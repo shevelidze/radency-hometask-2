@@ -1,0 +1,9 @@
+.cell {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  text-align: left;
+
+  padding: var(--spacing-1) var(--spacing-2);
+}
