@@ -6,15 +6,15 @@ export interface Category {
 const categories: Category[] = [
   {
     name: 'Task',
-    iconUrl: '/images/shopping_cart_FILL0_wght400_GRAD0_opsz48.svg',
+    iconUrl: '/images/taskIcon.svg',
   },
   {
     name: 'Random thought',
-    iconUrl: '/images/psychology_FILL0_wght400_GRAD0_opsz48.svg',
+    iconUrl: '/images/thoughtIcon.svg',
   },
   {
     name: 'Idea',
-    iconUrl: '/images/emoji_objects_FILL0_wght400_GRAD0_opsz48.svg',
+    iconUrl: '/images/ideaIcon.svg',
   },
 ];
 

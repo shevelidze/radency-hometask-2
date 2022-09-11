@@ -7,9 +7,14 @@ export interface TableProps
   head?: React.ReactNode;
 }
 
-const Table: React.FC<TableProps> = ({ children, head, ...props }) => {
+const Table: React.FC<TableProps> = ({
+  children,
+  head,
+  className,
+  ...props
+}) => {
   return (
-    <table {...props} className={styles.table}>
+    <table {...props} className={className + ' ' + styles.table}>
       <thead>{head}</thead>
       <tbody>{children}</tbody>
     </table>

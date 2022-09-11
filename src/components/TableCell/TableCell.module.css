@@ -7,3 +7,7 @@
 
   padding: var(--spacing-1) var(--spacing-2);
 }
+
+td.cell {
+  color: var(--primary-color)
+}

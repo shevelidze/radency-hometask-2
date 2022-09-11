@@ -1,11 +1,13 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type Category } from '../../configs/categories';
+import categories, { type Category } from '../../configs/categories';
 import { RootState } from '../store';
 
 export interface Note {
+  id: string;
   name: string;
-  content: string;
+  content?: string;
   category: Category;
+  createdDate: Date;
 }
 
 export interface NoteUpdate {
@@ -20,8 +22,24 @@ export interface NotesSlice {
 }
 
 const initialState: NotesSlice = {
-  active: [],
-  archived: [],
+  active: [
+    {
+      id: '123',
+      name: 'Dantist appointment',
+      category: categories[0],
+      content: `I’m gonna have a dentist appointment on the 3/5/2021,
+I moved it from 5/5/2021`,
+      createdDate: new Date(),
+    },
+  ],
+  archived: [
+    {
+      id: '12434',
+      name: 'Archived note',
+      category: categories[1],
+      createdDate: new Date(),
+    },
+  ],
 };
 
 export const notesSlice = createSlice({

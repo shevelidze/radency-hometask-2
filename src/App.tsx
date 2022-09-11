@@ -1,31 +1,18 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import './App.css';
-import Table from './components/Table';
-import TableRow from './components/TableRow';
-import TableHeaderCell from './components/TableHeaderCell';
-import TableCell from './components/TableCell';
+import Button from './components/Button';
+import NotesTable from './components/NotesTable';
 
 function App() {
   return (
-    <div>
-      <Table
-        head={
-          <TableRow>
-            <TableHeaderCell>Table header</TableHeaderCell>
-          </TableRow>
-        }
-      >
-        <TableRow>
-          <TableCell>Table cell</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Table cell</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Table cell</TableCell>
-        </TableRow>
-      </Table>
-    </div>
+    <Provider store={store}>
+      <div>
+        <NotesTable />
+        <Button>Push me</Button>
+      </div>
+    </Provider>
   );
 }
 
