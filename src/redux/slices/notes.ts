@@ -1,6 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import categories, { type Category } from '../../configs/categories';
 import { RootState } from '../store';
+import deleteIfFound from '../../utils/deleteIfFound';
 
 export interface Note {
   id: string;
@@ -42,6 +43,25 @@ I moved it from 5/5/2021`,
   ],
 };
 
+function generateNoteIdCheckPredicate(noteId: Note['id']) {
+  return (note: Note) => note.id === noteId;
+}
+
+function getNoteById(state: NotesSlice, noteId: Note['id']) {
+  const noteHasNeededId = generateNoteIdCheckPredicate(noteId);
+
+  return (
+    state.archived.find(noteHasNeededId) || state.active.find(noteHasNeededId)
+  );
+}
+
+function deleteNote(state: NotesSlice, noteId: Note['id']) {
+  const noteHasNeededId = generateNoteIdCheckPredicate(noteId);
+
+  deleteIfFound(state.active, noteHasNeededId) ||
+    deleteIfFound(state.archived, noteHasNeededId);
+}
+
 export const notesSlice = createSlice({
   name: 'notes',
   initialState,
@@ -49,34 +69,40 @@ export const notesSlice = createSlice({
     add: (state, action: PayloadAction<Note>) => {
       state.active.push(action.payload);
     },
-    remove: (
-      state,
-      action: PayloadAction<{ noteIndex: number; isArchived: boolean }>
-    ) => {
-      (action.payload.isArchived ? state.archived : state.active).splice(
-        action.payload.noteIndex,
-        1
-      );
+    remove: (state, action: PayloadAction<Note['id']>) => {
+      deleteNote(state, action.payload);
     },
     update: (
       state,
       action: PayloadAction<{
-        noteIndex: number;
-        isArchived: boolean;
+        noteId: Note['id'];
         update: NoteUpdate;
       }>
     ) => {
-      Object.assign(
-        (action.payload.isArchived ? state.archived : state.active)[
-          action.payload.noteIndex
-        ],
-        action.payload.update
-      );
+      const note = getNoteById(state, action.payload.noteId);
+
+      if (note !== undefined) Object.assign(note, action.payload.update);
+    },
+    archive: (state, action: PayloadAction<Note['id']>) => {
+      const note = getNoteById(state, action.payload);
+
+      if (note !== undefined) {
+        deleteNote(state, action.payload);
+        state.archived.push(note);
+      }
+    },
+    unarchive: (state, action: PayloadAction<Note['id']>) => {
+      const note = getNoteById(state, action.payload);
+
+      if (note !== undefined) {
+        deleteNote(state, action.payload);
+        state.active.push(note);
+      }
     },
   },
 });
 
-export const { add, remove, update } = notesSlice.actions;
+export const { add, remove, update, archive, unarchive } = notesSlice.actions;
 
 export const selectActiveNotes = (state: RootState) => state.notes.active;
 export const selectArchivedNotes = (state: RootState) => state.notes.archived;

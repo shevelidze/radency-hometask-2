@@ -10,7 +10,6 @@ import TableHeaderCell from '../TableHeaderCell';
 import ArchiveButton from '../ArchiveButton';
 import NoteRow from './NoteRow';
 import styles from './NotesTable.module.css';
-import findDates from '../../utils/findDates';
 
 const NotesTable: React.FC = () => {
   const [showArchived, setShowArchived] = useState(false);
@@ -43,15 +42,7 @@ const NotesTable: React.FC = () => {
       className={styles.notesTable}
     >
       {notes.map((note) => (
-        <NoteRow
-          key={note.id}
-          name={note.name}
-          created={note.createdDate.toLocaleDateString()}
-          category={note.category.name}
-          content={note.content || ''}
-          categoryIconUrl={note.category.iconUrl}
-          dates={findDates(note.content || '').join(', ')}
-        />
+        <NoteRow key={note.id} note={note} isArchived={showArchived} />
       ))}
     </Table>
   );

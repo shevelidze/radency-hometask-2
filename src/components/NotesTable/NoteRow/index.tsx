@@ -5,42 +5,40 @@ import EditButton from '../../EditButton';
 import DeleteButton from '../../DeleteButton';
 import ArchiveButton from '../../ArchiveButton';
 import CategoryIcon from '../../CategoryIcon';
+import { type Note } from '../../../redux/slices/notes';
+import findDates from '../../../utils/findDates';
+import { useAppDispatch } from '../../../redux/hooks';
+import { archive, unarchive, remove } from '../../../redux/slices/notes';
 
 export interface NoteRowProps {
-  name: string;
-  created: string;
-  category: string;
-  content: string;
-  dates: string;
-  categoryIconUrl: string;
+  note: Note;
+  isArchived: boolean;
 }
 
-const NoteRow: React.FC<NoteRowProps> = ({
-  name,
-  created,
-  category,
-  content,
-  dates,
-  categoryIconUrl,
-}) => {
+const NoteRow: React.FC<NoteRowProps> = ({ note, isArchived }) => {
+  const dispatch = useAppDispatch();
+
   return (
     <TableRow>
       <TableCell>
-        <CategoryIcon url={categoryIconUrl} />
+        <CategoryIcon url={note.category.iconUrl} />
       </TableCell>
-      <TableCell>{name}</TableCell>
-      <TableCell>{created}</TableCell>
-      <TableCell>{category}</TableCell>
-      <TableCell>{content}</TableCell>
-      <TableCell>{dates}</TableCell>
+      <TableCell>{note.name}</TableCell>
+      <TableCell>{note.createdDate.toLocaleDateString()}</TableCell>
+      <TableCell>{note.category.name}</TableCell>
+      <TableCell>{note.content}</TableCell>
+      <TableCell>{findDates(note.content || '').join(', ')}</TableCell>
       <TableCell>
         <EditButton />
       </TableCell>
       <TableCell>
-        <ArchiveButton variant="archive" />
+        <ArchiveButton
+          variant={isArchived ? 'unarchive' : 'archive'}
+          onClick={() => dispatch((isArchived ? unarchive : archive)(note.id))}
+        />
       </TableCell>
       <TableCell>
-        <DeleteButton />
+        <DeleteButton onClick={() => dispatch(remove(note.id))}/>
       </TableCell>
     </TableRow>
   );
