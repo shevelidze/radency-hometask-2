@@ -45,7 +45,7 @@ const NoteFormProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
                 dispatch(
                   add({
                     ...noteUpdate,
-                    createdDate: new Date().toLocaleString(),
+                    createdDate: new Date().toLocaleDateString(),
                   })
                 );
               } else
