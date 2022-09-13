@@ -9,6 +9,8 @@ import { type Note } from '../../../redux/slices/notes';
 import findDates from '../../../utils/findDates';
 import { useAppDispatch } from '../../../redux/hooks';
 import { archive, unarchive, remove } from '../../../redux/slices/notes';
+import categories from '../../../configs/categories';
+import useNoteForm from '../../../hooks/useNoteForm';
 
 export interface NoteRowProps {
   note: Note;
@@ -17,19 +19,22 @@ export interface NoteRowProps {
 
 const NoteRow: React.FC<NoteRowProps> = ({ note, isArchived }) => {
   const dispatch = useAppDispatch();
+  const openNoteForm = useNoteForm();
+
+  const noteCategory = categories[note.categoryIndex];
 
   return (
     <TableRow>
       <TableCell>
-        <CategoryIcon url={note.category.iconUrl} />
+        <CategoryIcon url={noteCategory.iconUrl} />
       </TableCell>
       <TableCell>{note.name}</TableCell>
-      <TableCell>{note.createdDate.toLocaleDateString()}</TableCell>
-      <TableCell>{note.category.name}</TableCell>
+      <TableCell>{note.createdDate}</TableCell>
+      <TableCell>{noteCategory.name}</TableCell>
       <TableCell>{note.content}</TableCell>
       <TableCell>{findDates(note.content || '').join(', ')}</TableCell>
       <TableCell>
-        <EditButton />
+        <EditButton onClick={() => openNoteForm(note)} />
       </TableCell>
       <TableCell>
         <ArchiveButton
@@ -38,7 +43,7 @@ const NoteRow: React.FC<NoteRowProps> = ({ note, isArchived }) => {
         />
       </TableCell>
       <TableCell>
-        <DeleteButton onClick={() => dispatch(remove(note.id))}/>
+        <DeleteButton onClick={() => dispatch(remove(note.id))} />
       </TableCell>
     </TableRow>
   );
