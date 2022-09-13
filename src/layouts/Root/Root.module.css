@@ -1,0 +1,8 @@
+.root {
+  margin: var(--spacing-4) auto;
+  max-width: 1000px;
+}
+
+.root>* {
+  margin-bottom: var(--spacing-3);
+}

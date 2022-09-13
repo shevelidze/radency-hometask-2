@@ -1,0 +1,17 @@
+.notesTable th:nth-child(7),
+.notesTable th:nth-child(8),
+.notesTable th:nth-child(9) {
+  width: 20px;
+}
+
+.notesTable {
+  table-layout: fixed;
+}
+
+.notesTable th:first-child {
+  width: 50px;
+}
+
+.notesTable td:nth-child(2) {
+  font-weight: bold;
+}
