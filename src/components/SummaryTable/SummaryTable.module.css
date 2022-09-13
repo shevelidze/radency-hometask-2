@@ -1,0 +1,7 @@
+.summaryTable th:first-child {
+  width: 50px;
+}
+
+.summaryTable td:nth-child(2) {
+  font-weight: bold;
+}
