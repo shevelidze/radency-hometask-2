@@ -24,19 +24,55 @@ export interface NotesSlice {
 const initialState: NotesSlice = {
   active: [
     {
-      id: '123',
+      id: crypto.randomUUID(),
+      name: 'Shopping',
+      categoryIndex: 0,
+      content: 'Go shopping on 02/03/2022 or 05.03.2022.',
+      createdDate: new Date().toLocaleDateString(),
+    },
+    {
+      id: crypto.randomUUID(),
       name: 'Dantist appointment',
       categoryIndex: 0,
       content: `I’m gonna have a dentist appointment on the 3/5/2021,
 I moved it from 5/5/2021`,
       createdDate: new Date().toLocaleDateString(),
     },
+    {
+      id: crypto.randomUUID(),
+      name: 'Note #3',
+      content: 'Content of the note #2',
+      categoryIndex: 1,
+      createdDate: new Date().toLocaleDateString(),
+    },
+    {
+      id: crypto.randomUUID(),
+      name: 'Note #4',
+      content: 'Content of the note #4',
+      categoryIndex: 2,
+      createdDate: new Date().toLocaleDateString(),
+    },
+    {
+      id: crypto.randomUUID(),
+      name: 'Note #5',
+      content: 'Content of the note #5',
+      categoryIndex: 0,
+      createdDate: new Date().toLocaleDateString(),
+    },
   ],
   archived: [
     {
-      id: '12434',
-      name: 'Archived note',
+      id: crypto.randomUUID(),
+      name: 'Note #6',
+      content: 'Content of the note #6',
       categoryIndex: 1,
+      createdDate: new Date().toLocaleDateString(),
+    },
+    {
+      id: crypto.randomUUID(),
+      name: 'Note #7',
+      content: 'Content of the note #7',
+      categoryIndex: 2,
       createdDate: new Date().toLocaleDateString(),
     },
   ],
