@@ -8,7 +8,8 @@
 		<circle fill="#FFFFFF" cx="24" cy="24" r="24"/>
 	</g>
 	<g>
-		<circle fill="#7E7E7E" cx="24" cy="24" r="24"/>
+<circle fill="rgb(105 114 128)" cx="24" cy="24" r="24"/>
+
 	</g>
 </g>
 <g id="Layer_2">
