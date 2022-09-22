@@ -9,8 +9,8 @@ const SummaryTable: React.FC = () => {
   return (
     <Table
       head={
-        <TableRow>
-          <TableHeaderCell className="w-16" />
+        <TableRow isHead>
+          <TableHeaderCell className="w-20" />
           <TableHeaderCell>Note Category</TableHeaderCell>
           <TableHeaderCell>Active</TableHeaderCell>
           <TableHeaderCell>Archived</TableHeaderCell>

@@ -21,22 +21,22 @@ const NotesTable: React.FC = () => {
     <Table
       className="table-fixed"
       head={
-        <TableRow>
-          <TableHeaderCell className="w-16" />
+        <TableRow isHead>
+          <TableHeaderCell className="w-20" />
           <TableHeaderCell>Name</TableHeaderCell>
           <TableHeaderCell>Created</TableHeaderCell>
           <TableHeaderCell>Category</TableHeaderCell>
           <TableHeaderCell>Content</TableHeaderCell>
           <TableHeaderCell>Dates</TableHeaderCell>
-          <TableHeaderCell className="w-10" />
-          <TableHeaderCell className="w-10">
+          <TableHeaderCell className="w-11" />
+          <TableHeaderCell className="w-11">
             <ArchiveButton
               onClick={() => setShowArchived(!showArchived)}
               variant={showArchived ? 'unarchive' : 'archive'}
               light
             />
           </TableHeaderCell>
-          <TableHeaderCell className="w-10" />
+          <TableHeaderCell className="w-11" />
         </TableRow>
       }
     >

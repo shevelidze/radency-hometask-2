@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './Table.module.css';
 
 export interface TableProps
   extends React.TableHTMLAttributes<HTMLTableElement>,
@@ -14,7 +13,7 @@ const Table: React.FC<TableProps> = ({
   ...props
 }) => {
   return (
-    <table {...props} className={className + ' ' + styles.table}>
+    <table {...props} className={'w-full border-collapse' + ' ' + className}>
       <thead>{head}</thead>
       <tbody>{children}</tbody>
     </table>
