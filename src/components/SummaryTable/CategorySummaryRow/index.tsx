@@ -34,7 +34,7 @@ const CategorySummaryRow: React.FC<CategorySummaryRowProps> = ({
       <TableCell>
         <CategoryIcon url={category.iconUrl} />
       </TableCell>
-      <TableCell>{category.name}</TableCell>
+      <TableCell className="font-bold">{category.name}</TableCell>
       <TableCell>{activeNotesNumber}</TableCell>
       <TableCell>{archivedNotesNumber}</TableCell>
     </TableRow>

@@ -9,7 +9,6 @@ import TableRow from '../TableRow';
 import TableHeaderCell from '../TableHeaderCell';
 import ArchiveButton from '../ArchiveButton';
 import NoteRow from './NoteRow';
-import styles from './NotesTable.module.css';
 
 const NotesTable: React.FC = () => {
   const [showArchived, setShowArchived] = useState(false);
@@ -20,26 +19,26 @@ const NotesTable: React.FC = () => {
 
   return (
     <Table
+      className="table-fixed"
       head={
         <TableRow>
-          <TableHeaderCell></TableHeaderCell>
+          <TableHeaderCell className="w-16" />
           <TableHeaderCell>Name</TableHeaderCell>
           <TableHeaderCell>Created</TableHeaderCell>
           <TableHeaderCell>Category</TableHeaderCell>
           <TableHeaderCell>Content</TableHeaderCell>
           <TableHeaderCell>Dates</TableHeaderCell>
-          <TableHeaderCell></TableHeaderCell>
-          <TableHeaderCell>
+          <TableHeaderCell className="w-10" />
+          <TableHeaderCell className="w-10">
             <ArchiveButton
               onClick={() => setShowArchived(!showArchived)}
               variant={showArchived ? 'unarchive' : 'archive'}
               light
             />
           </TableHeaderCell>
-          <TableHeaderCell></TableHeaderCell>
+          <TableHeaderCell className="w-10" />
         </TableRow>
       }
-      className={styles.notesTable}
     >
       {notes.map((note) => (
         <NoteRow key={note.id} note={note} isArchived={showArchived} />

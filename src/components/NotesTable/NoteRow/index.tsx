@@ -28,7 +28,7 @@ const NoteRow: React.FC<NoteRowProps> = ({ note, isArchived }) => {
       <TableCell>
         <CategoryIcon url={noteCategory.iconUrl} />
       </TableCell>
-      <TableCell>{note.name}</TableCell>
+      <TableCell className="font-bold">{note.name}</TableCell>
       <TableCell>{note.createdDate}</TableCell>
       <TableCell>{noteCategory.name}</TableCell>
       <TableCell>{note.content}</TableCell>

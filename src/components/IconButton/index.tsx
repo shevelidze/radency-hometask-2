@@ -1,10 +1,9 @@
 import React from 'react';
-import styles from './IconButton.module.css';
 
 const IconButton: React.FC<
   React.ButtonHTMLAttributes<HTMLButtonElement> & React.PropsWithChildren
 > = (props) => {
-  return <button {...props} className={styles.button} />;
+  return <button {...props} className="w-5 h-5 p-0" />;
 };
 
 export default IconButton;
