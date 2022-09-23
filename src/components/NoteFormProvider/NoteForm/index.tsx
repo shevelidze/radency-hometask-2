@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from '../../Button';
-import styles from './NoteForm.module.css';
 import Input from '../../Input';
 import categories from '../../../configs/categories';
+import ClassList from '../../../utils/classList';
 
 export interface NoteFormProps
   extends React.FormHTMLAttributes<HTMLFormElement> {
@@ -15,7 +15,13 @@ export interface NoteFormProps
 
 const NoteForm: React.FC<NoteFormProps> = ({ initialValues, ...props }) => {
   return (
-    <form {...props} className={styles.noteForm}>
+    <form
+      {...props}
+      className={new ClassList(
+        'fixed left-1/2 top-1/2 flex flex-col gap-3',
+        'p-6 bg-white -translate-x-1/2 -translate-y-1/2'
+      ).compose()}
+    >
       <Input
         tag="input"
         type="text"
