@@ -1,4 +1,5 @@
 import React from 'react';
+import ClassList from '../../utils/classList';
 
 export interface TableProps
   extends React.TableHTMLAttributes<HTMLTableElement>,
@@ -13,7 +14,10 @@ const Table: React.FC<TableProps> = ({
   ...props
 }) => {
   return (
-    <table {...props} className={'w-full border-collapse' + ' ' + className}>
+    <table
+      {...props}
+      className={new ClassList('w-full border-collapse', className).compose()}
+    >
       <thead>{head}</thead>
       <tbody>{children}</tbody>
     </table>

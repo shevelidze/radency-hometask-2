@@ -1,4 +1,5 @@
 import React from 'react';
+import ClassList from '../../utils/classList';
 
 const TableCell: React.FC<
   React.TdHTMLAttributes<HTMLTableCellElement> & React.PropsWithChildren
@@ -7,9 +8,10 @@ const TableCell: React.FC<
     <td
       {...props}
       className={
-        'text-ellipsis overflow-hidden whitespace-nowrap text-gray-600 px-3 py-1' +
-        ' ' +
+        new ClassList(
+        'text-ellipsis overflow-hidden whitespace-nowrap text-gray-600 px-3 py-1',
         className
+        ).compose()
       }
     />
   );

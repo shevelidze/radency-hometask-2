@@ -1,4 +1,5 @@
 import React from 'react';
+import ClassList from '../../utils/classList';
 
 export interface TableRowProps
   extends React.HTMLAttributes<HTMLTableRowElement>,
@@ -14,11 +15,10 @@ const TableRow: React.FC<TableRowProps> = ({
   return (
     <tr
       {...props}
-      className={
-        (isHead ? 'bg-gray-500 text-white' : 'bg-gray-50 odd:bg-gray-200') +
-        ' ' +
+      className={new ClassList(
+        isHead ? 'bg-gray-500 text-white' : 'bg-gray-50 odd:bg-gray-200',
         className
-      }
+      ).compose()}
     />
   );
 };
