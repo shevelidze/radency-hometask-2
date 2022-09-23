@@ -1,5 +1,3 @@
-import React from 'react';
-import './App.css';
 import Root from './layouts/Root';
 import useNoteForm from './hooks/useNoteForm';
 import NotesTable from './components/NotesTable';
